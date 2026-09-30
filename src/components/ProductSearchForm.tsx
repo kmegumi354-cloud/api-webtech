@@ -23,29 +23,35 @@ export default function ProductSearchForm(
   });
 
   return (
-    <form onSubmit={handleSubmit(onSearch)} noValidate>
-      <label htmlFor="q">คำค้น</label>
-      <input id="q" {...register("q")} placeholder="phone" />
+    <form className="form-row" onSubmit={handleSubmit(onSearch)} noValidate>
+      <div className="field grow">
+        <label htmlFor="q">คำค้น</label>
+        <input id="q" {...register("q")} placeholder="เช่น phone" />
+      </div>
 
-      <label htmlFor="limit">จำนวนรายการ</label>
-      <input
-        id="limit"
-        type="number"
-        required
-        {...register("limit", { valueAsNumber: true })}
-        aria-invalid={!!errors.limit}
-        aria-describedby="limit-error"
-      />
-      <span id="limit-error" role="alert">{errors.limit?.message}</span>
+      <div className="field">
+        <label htmlFor="limit">จำนวนรายการ</label>
+        <input
+          id="limit"
+          type="number"
+          required
+          {...register("limit", { valueAsNumber: true })}
+          aria-invalid={!!errors.limit}
+          aria-describedby="limit-error"
+        />
+        <span className="error" id="limit-error" role="alert">{errors.limit?.message}</span>
+      </div>
 
-      <label htmlFor="sortBy">เรียงตาม</label>
-      <select id="sortBy" {...register("sortBy")}>
-        {SORT_FIELDS.map((field) => (
-          <option key={field} value={field}>{field}</option>
-        ))}
-      </select>
+      <div className="field">
+        <label htmlFor="sortBy">เรียงตาม</label>
+        <select id="sortBy" {...register("sortBy")}>
+          {SORT_FIELDS.map((field) => (
+            <option key={field} value={field}>{field}</option>
+          ))}
+        </select>
+      </div>
 
-      <button type="submit" disabled={isSubmitting}>
+      <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
         {isSubmitting ? "กำลังค้นหา" : "ค้นหา"}
       </button>
     </form>

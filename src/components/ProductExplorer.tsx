@@ -64,53 +64,70 @@ export default function ProductExplorer() {
   }
 
   return (
-    <main>
-      <h1>รายการสินค้า</h1>
+    <main className="page">
+      <header className="page-header">
+        <div>
+          <h1>รายการสินค้า</h1>
+          <p className="subtitle">Product Explorer · React Hook Form + Zod + DummyJSON</p>
+        </div>
+        <button
+          className="btn btn-ghost"
+          type="button"
+          onClick={() => loadProducts(defaultQuery)}
+          disabled={status === "loading"}
+        >
+          {status === "loading" ? "กำลังโหลด" : "โหลดข้อมูลใหม่"}
+        </button>
+      </header>
 
-      <button
-        type="button"
-        onClick={() => loadProducts(defaultQuery)}
-        disabled={status === "loading"}
-      >
-        {status === "loading" ? "กำลังโหลด" : "โหลดข้อมูล"}
-      </button>
-
-      <ProductSearchForm onSearch={loadProducts} />
+      <section className="card">
+        <h2>ค้นหาสินค้า</h2>
+        <ProductSearchForm onSearch={loadProducts} />
+      </section>
 
       {/* key ทำให้ฟอร์มสร้างใหม่ และรับ defaultValues ใหม่เมื่อเปลี่ยนรายการที่แก้ไข */}
-      <ProductForm
-        key={editing?.id ?? "new"}
-        editing={editing}
-        onSave={saveProduct}
-        onCancel={() => setEditing(null)}
-      />
+      <section className="card">
+        <h2>{editing ? "แก้ไขสินค้า" : "เพิ่มสินค้าใหม่"}</h2>
+        <ProductForm
+          key={editing?.id ?? "new"}
+          editing={editing}
+          onSave={saveProduct}
+          onCancel={() => setEditing(null)}
+        />
+      </section>
 
-      <section aria-live="polite">
-        {status === "loading" && <p>กำลังโหลดข้อมูล</p>}
-        {status === "error" && <p role="alert">{errorMessage}</p>}
+      <section className="card" aria-live="polite">
+        <h2>สินค้าทั้งหมด{status === "ready" && ` (${products.length})`}</h2>
+        {status === "loading" && <p className="state">กำลังโหลดข้อมูล...</p>}
+        {status === "error" && <p className="state state-error" role="alert">{errorMessage}</p>}
         {status === "ready" && products.length === 0 && (
-          <p>ไม่พบสินค้าที่ตรงกับเงื่อนไข</p>
+          <p className="state">ไม่พบสินค้าที่ตรงกับเงื่อนไข</p>
         )}
         {status === "ready" && products.length > 0 && (
+          <div className="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>ชื่อสินค้า</th><th>ราคา</th>
-                <th>คงเหลือ</th><th>หมวดหมู่</th><th></th>
+                <th>ชื่อสินค้า</th><th className="num">ราคา</th>
+                <th className="num">คงเหลือ</th><th>หมวดหมู่</th><th></th>
               </tr>
             </thead>
             <tbody>
               {products.map((item) => (
                 <tr key={item.id}>
                   <td>{item.title}</td>
-                  <td>{item.price}</td>
-                  <td>{item.stock}</td>
-                  <td>{item.category}</td>
-                  <td>
-                    <button type="button" onClick={() => setEditing(item)}>
+                  <td className="num">{item.price.toLocaleString("en-US", { minimumFractionDigits: 2 })}</td>
+                  <td className="num">
+                    <span className={item.stock === 0 ? "badge badge-out" : "badge badge-ok"}>
+                      {item.stock}
+                    </span>
+                  </td>
+                  <td><span className="chip">{item.category}</span></td>
+                  <td className="row-actions">
+                    <button className="btn btn-sm btn-ghost" type="button" onClick={() => setEditing(item)}>
                       แก้ไข
                     </button>
-                    <button type="button" onClick={() => removeProduct(item.id)}>
+                    <button className="btn btn-sm btn-danger" type="button" onClick={() => removeProduct(item.id)}>
                       ลบ
                     </button>
                   </td>
@@ -118,6 +135,7 @@ export default function ProductExplorer() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </section>
     </main>
