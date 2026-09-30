@@ -1,0 +1,7 @@
+﻿body { font-family: sans-serif; margin: 2rem; }
+table { border-collapse: collapse; margin-top: 1rem; }
+th, td { border: 1px solid #ccc; padding: 4px 8px; }
+form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 1rem 0; }
+[aria-invalid="true"] { border-color: red; }
+[role="alert"] { color: red; }
+

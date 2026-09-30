@@ -1,0 +1,217 @@
+﻿{
+    "products":  [
+                     {
+                         "id":  1,
+                         "title":  "Sample product 1",
+                         "price":  8.5,
+                         "stock":  7,
+                         "category":  "beauty"
+                     },
+                     {
+                         "id":  2,
+                         "title":  "Sample product 2",
+                         "price":  12,
+                         "stock":  14,
+                         "category":  "fragrances"
+                     },
+                     {
+                         "id":  3,
+                         "title":  "Sample product 3",
+                         "price":  15.5,
+                         "stock":  21,
+                         "category":  "furniture"
+                     },
+                     {
+                         "id":  4,
+                         "title":  "Sample product 4",
+                         "price":  19,
+                         "stock":  28,
+                         "category":  "groceries"
+                     },
+                     {
+                         "id":  5,
+                         "title":  "Sample product 5",
+                         "price":  22.5,
+                         "stock":  35,
+                         "category":  "home-decoration"
+                     },
+                     {
+                         "id":  6,
+                         "title":  "Sample product 6",
+                         "price":  26,
+                         "stock":  42,
+                         "category":  "kitchen-accessories"
+                     },
+                     {
+                         "id":  7,
+                         "title":  "Sample product 7",
+                         "price":  29.5,
+                         "stock":  49,
+                         "category":  "laptops"
+                     },
+                     {
+                         "id":  8,
+                         "title":  "Sample product 8",
+                         "price":  33,
+                         "stock":  6,
+                         "category":  "mens-shirts"
+                     },
+                     {
+                         "id":  9,
+                         "title":  "Sample product 9",
+                         "price":  36.5,
+                         "stock":  13,
+                         "category":  "mens-shoes"
+                     },
+                     {
+                         "id":  10,
+                         "title":  "Sample product 10",
+                         "price":  40,
+                         "stock":  20,
+                         "category":  "mens-watches"
+                     },
+                     {
+                         "id":  11,
+                         "title":  "Sample product 11",
+                         "price":  43.5,
+                         "stock":  27,
+                         "category":  "mobile-accessories"
+                     },
+                     {
+                         "id":  12,
+                         "title":  "Sample product 12",
+                         "price":  47,
+                         "stock":  34,
+                         "category":  "motorcycle"
+                     },
+                     {
+                         "id":  13,
+                         "title":  "Sample product 13",
+                         "price":  50.5,
+                         "stock":  41,
+                         "category":  "skin-care"
+                     },
+                     {
+                         "id":  14,
+                         "title":  "Sample product 14",
+                         "price":  54,
+                         "stock":  48,
+                         "category":  "smartphones"
+                     },
+                     {
+                         "id":  15,
+                         "title":  "Sample product 15",
+                         "price":  57.5,
+                         "stock":  5,
+                         "category":  "sports-accessories"
+                     },
+                     {
+                         "id":  16,
+                         "title":  "Sample product 16",
+                         "price":  61,
+                         "stock":  12,
+                         "category":  "sunglasses"
+                     },
+                     {
+                         "id":  17,
+                         "title":  "Sample product 17",
+                         "price":  64.5,
+                         "stock":  19,
+                         "category":  "tablets"
+                     },
+                     {
+                         "id":  18,
+                         "title":  "Sample product 18",
+                         "price":  68,
+                         "stock":  26,
+                         "category":  "tops"
+                     },
+                     {
+                         "id":  19,
+                         "title":  "Sample product 19",
+                         "price":  71.5,
+                         "stock":  33,
+                         "category":  "vehicle"
+                     },
+                     {
+                         "id":  20,
+                         "title":  "Sample product 20",
+                         "price":  75,
+                         "stock":  40,
+                         "category":  "womens-bags"
+                     },
+                     {
+                         "id":  21,
+                         "title":  "Sample product 21",
+                         "price":  78.5,
+                         "stock":  47,
+                         "category":  "womens-dresses"
+                     },
+                     {
+                         "id":  22,
+                         "title":  "Sample product 22",
+                         "price":  82,
+                         "stock":  4,
+                         "category":  "womens-jewellery"
+                     },
+                     {
+                         "id":  23,
+                         "title":  "Sample product 23",
+                         "price":  85.5,
+                         "stock":  11,
+                         "category":  "womens-shoes"
+                     },
+                     {
+                         "id":  24,
+                         "title":  "Sample product 24",
+                         "price":  89,
+                         "stock":  18,
+                         "category":  "womens-watches"
+                     },
+                     {
+                         "id":  25,
+                         "title":  "Sample product 25",
+                         "price":  92.5,
+                         "stock":  25,
+                         "category":  "beauty"
+                     },
+                     {
+                         "id":  26,
+                         "title":  "Sample product 26",
+                         "price":  96,
+                         "stock":  32,
+                         "category":  "fragrances"
+                     },
+                     {
+                         "id":  27,
+                         "title":  "Sample product 27",
+                         "price":  99.5,
+                         "stock":  39,
+                         "category":  "furniture"
+                     },
+                     {
+                         "id":  28,
+                         "title":  "Sample product 28",
+                         "price":  103,
+                         "stock":  46,
+                         "category":  "groceries"
+                     },
+                     {
+                         "id":  29,
+                         "title":  "Sample product 29",
+                         "price":  106.5,
+                         "stock":  3,
+                         "category":  "home-decoration"
+                     },
+                     {
+                         "id":  30,
+                         "title":  "Sample product 30",
+                         "price":  110,
+                         "stock":  10,
+                         "category":  "kitchen-accessories"
+                     }
+                 ],
+    "total":  30,
+    "skip":  0,
+    "limit":  30
+}
