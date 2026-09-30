@@ -1,4 +1,4 @@
-﻿import { z } from "zod";
+import { z } from "zod";
 
 // รายชื่อหมวดหมู่ คัดลอกจาก
 // https://dummyjson.com/products/category-list
