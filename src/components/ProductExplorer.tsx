@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import ThreeBackground from "./ThreeBackground";
 import { defaultQuery, fetchProducts } from "@/lib/products";
 import type {
   Product, ProductDraft, ProductList, SearchQuery,
@@ -15,6 +17,61 @@ export default function ProductExplorer() {
   const [status, setStatus] = useState<LoadState>("loading");
   const [errorMessage, setErrorMessage] = useState("");
   const [editing, setEditing] = useState<Product | null>(null);
+  const rootRef = useRef<HTMLElement>(null);
+  const prevStatus = useRef<LoadState>("loading");
+  const prevCount = useRef(0);
+
+  // แอนิเมชันเข้าจอครั้งแรก
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(".page-header h1", {
+        y: 40, opacity: 0, letterSpacing: "0.3em",
+        duration: 1.2, ease: "expo.out",
+      });
+      gsap.from(".subtitle", { y: 20, opacity: 0, duration: 1, delay: 0.25, ease: "power3.out" });
+      gsap.from(".page-header .btn", { scale: 0.6, opacity: 0, duration: 0.8, delay: 0.4, ease: "back.out(2)" });
+      gsap.from(".card", {
+        y: 60, opacity: 0, rotateX: -12, transformPerspective: 800,
+        duration: 1, stagger: 0.16, delay: 0.35, ease: "power4.out",
+      });
+    }, rootRef);
+    return () => ctx.revert();
+  }, []);
+
+  // แสงสปอตไลต์ที่ตามเมาส์บนการ์ด
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    function onMove(e: PointerEvent) {
+      const card = (e.target as HTMLElement).closest<HTMLElement>(".card");
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+      card.style.setProperty("--my", `${e.clientY - rect.top}px`);
+    }
+    root.addEventListener("pointermove", onMove);
+    return () => root.removeEventListener("pointermove", onMove);
+  }, []);
+
+  // แถวในตาราง: โหลดเสร็จให้ไล่เข้าทีละแถว, เพิ่มใหม่ให้เด้งเข้ามา
+  useEffect(() => {
+    const root = rootRef.current;
+    if (root && status === "ready") {
+      if (prevStatus.current !== "ready") {
+        gsap.from(root.querySelectorAll("tbody tr"), {
+          y: 24, opacity: 0, duration: 0.6, stagger: 0.04, ease: "power3.out",
+        });
+      } else if (products.length > prevCount.current) {
+        const rows = root.querySelectorAll("tbody tr");
+        const last = rows[rows.length - 1];
+        if (last) {
+          gsap.from(last, { scale: 0.85, opacity: 0, backgroundColor: "rgba(129,140,248,0.5)", duration: 0.9, ease: "elastic.out(1, 0.6)" });
+        }
+      }
+    }
+    prevStatus.current = status;
+    prevCount.current = products.length;
+  }, [status, products.length]);
 
   function showResult(list: ProductList) {
     setProducts(list.products);
@@ -57,14 +114,22 @@ export default function ProductExplorer() {
   }
 
   function removeProduct(id: number) {
-    setProducts(products.filter((item) => item.id !== id));
-    if (editing?.id === id) {
-      setEditing(null);
+    const row = rootRef.current?.querySelector(`tr[data-id="${id}"]`);
+    const remove = () => {
+      setProducts((list) => list.filter((item) => item.id !== id));
+      setEditing((current) => (current?.id === id ? null : current));
+    };
+    if (row) {
+      gsap.to(row, { x: 80, opacity: 0, duration: 0.35, ease: "power2.in", onComplete: remove });
+    } else {
+      remove();
     }
   }
 
   return (
-    <main className="page">
+    <>
+    <ThreeBackground />
+    <main ref={rootRef} className="page">
       <header className="page-header">
         <div>
           <h1>รายการสินค้า</h1>
@@ -114,7 +179,7 @@ export default function ProductExplorer() {
             </thead>
             <tbody>
               {products.map((item) => (
-                <tr key={item.id}>
+                <tr key={item.id} data-id={item.id}>
                   <td>{item.title}</td>
                   <td className="num">{item.price.toLocaleString("en-US", { minimumFractionDigits: 2 })}</td>
                   <td className="num">
@@ -139,5 +204,6 @@ export default function ProductExplorer() {
         )}
       </section>
     </main>
+    </>
   );
 }

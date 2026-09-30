@@ -5,16 +5,19 @@
   "scripts": { "dev": "next dev", "build": "next build", "start": "next start" },
   "dependencies": {
     "@hookform/resolvers": "^5.0.0",
+    "gsap": "^3.12.5",
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.0",
+    "three": "^0.170.0",
     "zod": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.170.0",
     "typescript": "^5"
   }
 }
