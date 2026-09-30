@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import ThreeBackground from "./ThreeBackground";
 import { defaultQuery, fetchProducts } from "@/lib/products";
 import type {
   Product, ProductDraft, ProductList, SearchQuery,
@@ -127,8 +126,6 @@ export default function ProductExplorer() {
   }
 
   return (
-    <>
-    <ThreeBackground />
     <main ref={rootRef} className="page">
       <header className="page-header">
         <div>
@@ -204,6 +201,5 @@ export default function ProductExplorer() {
         )}
       </section>
     </main>
-    </>
   );
 }

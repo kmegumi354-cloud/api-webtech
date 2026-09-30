@@ -37,14 +37,6 @@ body {
 
 ::selection { background: var(--primary); color: #fff; }
 
-/* ---------- 3D background ---------- */
-.three-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
 .page {
   position: relative;
   z-index: 1;
